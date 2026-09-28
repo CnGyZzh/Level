@@ -1,0 +1,72 @@
+name: Refresh activity logs
+
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-logs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out Level
+        uses: actions/checkout@v4
+
+      - name: Refresh public activity records
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: CnGyZzh
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+
+          owner = os.environ["GITHUB_OWNER"]
+          token = os.environ["GITHUB_TOKEN"]
+          request = Request(
+              f"https://api.github.com/users/{owner}/events/public?per_page=100",
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {token}",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              },
+          )
+          with urlopen(request, timeout=20) as response:
+              events = json.load(response)
+
+          def event_line(event):
+              created = event.get("created_at", "")
+              repo = event.get("repo", {}).get("name", "unknown/repository")
+              event_type = event.get("type", "Activity")
+              return f"Contribution on {created} · {repo} · {event_type}"
+
+          activity_path = Path("activity.txt")
+          existing = activity_path.read_text(encoding="utf-8").splitlines() if activity_path.exists() else []
+          existing_set = set(existing)
+          fresh = [event_line(event) for event in events if event.get("created_at")]
+          fresh = list(dict.fromkeys(line for line in fresh if line not in existing_set))
+          if fresh:
+              activity_path.write_text("\n".join(fresh + existing).rstrip() + "\n", encoding="utf-8")
+
+          today = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+          daily_path = Path("daily_log.txt")
+          daily = daily_path.read_text(encoding="utf-8").splitlines() if daily_path.exists() else []
+          marker = f"Daily contribution on {today} · GitHub Actions refresh"
+          if fresh and marker not in daily:
+              daily_path.write_text("\n".join(daily + [marker]).rstrip() + "\n", encoding="utf-8")
+          PY
+
+      - name: Commit refreshed records
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add activity.txt daily_log.txt
+          git diff --cached --quiet || git commit -m "chore: refresh activity logs"
+          git push
