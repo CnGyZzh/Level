@@ -26,7 +26,6 @@
 | Project | What it is | Link |
 | --- | --- | --- |
 | **WeType Monet** | 微信输入法的 Material You / Monet 动态配色个人维护分支 | [Open repository](https://github.com/CnGyZzh/WeType_Monet-Gy) |
-| **言外 · Yanwai** | 结合上下文的微信聊天辅助 Android 模块 | [Open repository](https://github.com/CnGyZzh/yanwai-Gy) |
 | **Profile** | 个人主页、项目精选与开源动态 | [Visit profile](https://github.com/CnGyZzh) |
 
 ## Live snapshot
