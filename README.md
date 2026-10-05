@@ -1,46 +1,62 @@
 <div align="center">
 
-<img src="assets/readme-banner.svg" width="100%" alt="GitHub Level" />
+<img src="assets/readme-banner.svg" width="100%" alt="CnGyZzh Level" />
 
-# GitHub Level
+# Level
 
-个人公开活动归档 · 自动增量记录 · 项目入口
+**CnGyZzh 的公开活动归档与项目中枢**
 
-[活动记录](activity.txt) · [刷新日志](daily_log.txt) · [个人网站](https://cngyzzh.github.io) · [工作流](https://github.com/CnGyZzh/Level/actions)
+[![Profile](https://img.shields.io/badge/Profile-CnGyZzh-181717?logo=github)](https://github.com/CnGyZzh)
+[![Activity](https://img.shields.io/badge/Activity-Auto_Update-2ea44f?logo=githubactions)](activity.txt)
+[![Website](https://img.shields.io/badge/Site-cngyzzh.github.io-4285F4)](https://cngyzzh.github.io)
+
+[活动记录](activity.txt) · [刷新日志](daily_log.txt) · [项目矩阵](#project-matrix) · [Actions](https://github.com/CnGyZzh/Level/actions)
 
 </div>
 
-## 这个仓库做什么
+## What is Level?
 
-保存 CnGyZzh 的公开 GitHub 活动快照，方便回看提交、讨论等事件。可视化个人网站位于 [CnGyZzh.github.io](https://github.com/CnGyZzh/CnGyZzh.github.io)，本仓库主要保存文本记录和更新工作流。
+**Level** 是 CnGyZzh 的轻量 GitHub 活动中枢：自动抓取公开事件、保存增量记录，同时作为各项目之间的统一导航页。
 
-## 从这里开始
+它与 **[CnGyZzh/CnGyZzh](https://github.com/CnGyZzh/CnGyZzh)** 配合：
+
+- **CnGyZzh**：面向访客的主页与项目展示
+- **Level**：公开活动记录、更新日志与项目索引
+
+## Project matrix
+
+| Project | Focus | Links |
+| :--- | :--- | :--- |
+| **HyperMax** | Xiaomi 17 Pro 高刷 / 触控 / 温控调校 | [Repo](https://github.com/CnGyZzh/HyperMax) · [Releases](https://github.com/CnGyZzh/HyperMax/releases) |
+| **WeType Monet** | 微信输入法 Material You / Monet | [Repo](https://github.com/CnGyZzh/WeType_Monet-Gy) · [Releases](https://github.com/CnGyZzh/WeType_Monet-Gy/releases) |
+| **ZEEHO Auto Gy** | 极核自动任务 / GitHub Actions | [Repo](https://github.com/CnGyZzh/ZEEHO-Auto-Gy) |
+| **Profile** | GitHub 个人主页与贡献动画 | [Repo](https://github.com/CnGyZzh/CnGyZzh) |
+| **Website** | 个人站点 / 项目展示 | [Site](https://cngyzzh.github.io) · [Repo](https://github.com/CnGyZzh/CnGyZzh.github.io) |
+
+## Activity archive
 
 | 文件 | 用途 |
 | :--- | :--- |
-| [activity.txt](activity.txt) | 公开活动记录；新增事件去重后放在文件前面。 |
-| [daily_log.txt](daily_log.txt) | 发现新活动时追加的刷新时间记录。 |
-| [update-activity.yml](.github/workflows/update-activity.yml) | 拉取公开事件、更新文件并提交的 GitHub Actions 工作流。 |
+| **[activity.txt](activity.txt)** | 公开 GitHub 事件，去重后按新到旧保存 |
+| **[daily_log.txt](daily_log.txt)** | 检测到新活动时记录刷新时间 |
+| **[update-activity.yml](.github/workflows/update-activity.yml)** | 自动抓取、更新与提交 |
 
-## 更新方式
+### Schedule
 
-- **定时刷新**：工作流设置为每天 02:17 UTC（北京时间 10:17），实际启动时间由 GitHub Actions 调度决定。
-- **手动刷新**：打开 Actions → **Refresh activity logs** → **Run workflow**。
-- **增量保存**：每次读取最多 100 条公开事件，按生成的记录行去重；没有新记录时不会新增提交。
+- 定时运行：每天 02:17 UTC，即北京时间约 **10:17**
+- 手动运行：Actions → **Refresh activity logs** → **Run workflow**
+- 无新事件时不会生成无意义提交
 
-工作流使用仓库自带的 GITHUB_TOKEN，并需要 contents: write 权限。Fork 后如需记录自己的活动，请修改工作流中的 GITHUB_OWNER，并启用 Actions。
+> GitHub Actions 的 cron 可能因平台负载延迟几分钟。这里保存的是公开事件快照，不等同于贡献日历，也不保证覆盖完整历史。
 
-> 这是公开事件的快照归档，不等同于 GitHub 贡献日历，也不保证覆盖完整历史。刷新日志表示抓取时间，不代表当天的贡献次数。
+## Navigation
 
-## 项目导航
+<div align="center">
 
-| 项目 | 方向 |
-| :--- | :--- |
-| [WeType Monet](https://github.com/CnGyZzh/WeType_Monet-Gy) | 微信输入法动态配色。 |
-| [HyperMax](https://github.com/CnGyZzh/HyperMax) | Xiaomi 17 Pro 刷新率、触控与温控整合适配。 |
-| [个人网站](https://github.com/CnGyZzh/CnGyZzh.github.io) | 项目索引与发布记录。 |
-| [个人主页](https://github.com/CnGyZzh/CnGyZzh) | GitHub Profile README 与贡献动画。 |
+**[CnGyZzh](https://github.com/CnGyZzh) · [HyperMax](https://github.com/CnGyZzh/HyperMax) · [WeType Monet](https://github.com/CnGyZzh/WeType_Monet-Gy) · [ZEEHO Auto](https://github.com/CnGyZzh/ZEEHO-Auto-Gy) · [Website](https://cngyzzh.github.io)**
 
-## 反馈与维护
+</div>
 
-记录异常时，请在 [Issues](https://github.com/CnGyZzh/Level/issues) 提供记录行、日期和对应 GitHub 事件链接。仓库当前未声明单独的开源许可证。
+---
+
+<sub>Maintained by Gy · This repository currently has no standalone license declaration.</sub>
